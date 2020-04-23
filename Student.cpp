@@ -1,54 +1,12 @@
-#ifndef Student_cpp
-#define Student_cpp
-#include "iostream"
-#include "Door.cpp"
-#include "Room.cpp"
-using namespace std;
+#include "Student.hpp"
 
-class Student
+Student::Student(string name)
 {
-    public:
-    Student(Door* dr)
-    {
-        this->currDoor = dr;
-        this->currRoom = NULL;
-    }
-    Door* currDoor;
-    Room* currRoom;
-    void enterRoom()
-    {
-        this->currRoom = currDoor->getRoom();
-        this->currDoor = NULL;
-    }
+    this->name = name;
+    this->currRoom = 0;
+}
 
-    void chooseDoor(int i)
-    {
-        
-        this->currDoor = this->currRoom->getDoor(i);
-    }
-    void travel()
-    {
-        string a;
-        int i;
-        while(true)
-        {
-            currDoor->displayRoom();
-            cout << "Enter " << this->currDoor->displayRoom() << "?" << "\n";
-            cin >> a;
-            if(a == "yes")
-            {
-                this->enterRoom();
-            }
-            cout << "You are in the " <<this->currRoom->getName()<< "\n";
-            cout << "Chose a door"<< "\n";
-            this->currRoom->displayDoors();
-            cin >> i;
-            this->chooseDoor(i);
-        }
-    }
-
-
-    private:
-
-
-};
+void Student::setRoom(Room* room)
+{
+    this->currRoom = room;
+}
